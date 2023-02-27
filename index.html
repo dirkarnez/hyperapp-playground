@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import "https://unpkg.com/water.css@2.0.0/out/water.min.css";
+
+        body {
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="app"></main>
+    <script type="module">
+        import { h, text, app } from "https://cdn.jsdelivr.net/npm/hyperapp@2.0.22/+esm"
+        import { main, h1, button } from "https://cdn.jsdelivr.net/npm/@hyperapp/html/+esm"
+
+        const Subtract = (state) => ({ ...state, count: state.count - 1 })
+        const Add = (state) => ({ ...state, count: state.count + 1 })
+
+        app({
+            init: (count = 0) => ({ count }),
+            view: (state) =>
+                main([
+                    h1(text(state.count)),
+                    button({ onclick: Subtract }, text("-")),
+                    button({ onclick: Add }, text("+")),
+                ]),
+            node: document.getElementById("app"),
+        })
+
+    </script>
+</body>
+
+</html>
